@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
+
         <header class="header">
             <h1>Koleksi Anda</h1>
         </header>
 
-        <!-- Tabs -->
+
         <nav class="tabs">
             <button class="tab active" data-tab="playlists">Playlist</button>
             <button class="tab" data-tab="artists">Artis</button>
@@ -21,9 +21,9 @@
             <button class="tab" data-tab="podcasts">Podcast & Acara</button>
         </nav>
 
-        <!-- Content -->
+
         <main class="content">
-            <!-- Playlists Tab -->
+
             <div id="playlists" class="tab-content active">
                 <div class="grid">
                     <div class="item">
@@ -36,11 +36,11 @@
                         <h3>My Playlist</h3>
                         <p>Playlist • 45 lagu</p>
                     </div>
-                    <!-- Tambahkan lebih banyak item sesuai kebutuhan -->
+                    
                 </div>
             </div>
 
-            <!-- Artists Tab -->
+            
             <div id="artists" class="tab-content">
                 <div class="grid">
                     <div class="item">
@@ -48,11 +48,11 @@
                         <h3>Artist Name</h3>
                         <p>Artis</p>
                     </div>
-                    <!-- Tambahkan lebih banyak -->
+                    
                 </div>
             </div>
 
-            <!-- Albums Tab -->
+
             <div id="albums" class="tab-content">
                 <div class="grid">
                     <div class="item">
@@ -60,37 +60,26 @@
                         <h3>Album Title</h3>
                         <p>Album • Artist Name</p>
                     </div>
-                    <!-- Tambahkan lebih banyak -->
+
                 </div>
             </div>
 
-            <!-- Podcasts Tab -->
+
             <div id="podcasts" class="tab-content">
+                <div class="grid">
+                    <div class="item">
+                        <img src="https://via.placeholder.com/150" alt="Podcast 1">
+                        <div id="podcasts" class="tab-content">
                 <div class="grid">
                     <div class="item">
                         <img src="https://via.placeholder.com/150" alt="Podcast 1">
                         <h3>Podcast Title</h3>
                         <p>Podcast • Host Name</p>
                     </div>
-                    <!-- Tambahkan lebih banyak -->
+
                 </div>
             </div>
         </main>
     </div>
 
-    <script>
-        // JavaScript sederhana untuk switch tab
-        const tabs = document.querySelectorAll('.tab');
-        const contents = document.querySelectorAll('.tab-content');
-
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                tabs.forEach(t => t.classList.remove('active'));
-                contents.forEach(c => c.classList.remove('active'));
-                tab.classList.add('active');
-                document.getElementById(tab.dataset.tab).classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+    
