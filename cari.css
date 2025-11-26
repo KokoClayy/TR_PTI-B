@@ -1,0 +1,95 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 15px 25px;
+    background: #000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-box input {
+    width: 280px;
+    padding: 10px 15px;
+    border-radius: 30px;
+    border: none;
+    background: #282828;
+    color: white;
+    outline: none;
+}
+
+.nav-right a {
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.nav-right a:hover {
+    opacity: 1;
+}
+
+.btn {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+/* CONTENT */
+.container {
+    padding: 30px;
+}
+
+.container h2 {
+    margin-bottom: 20px;
+}
+
+/* GRID */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    height: 130px;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,255,255,0.2);
+}
+
+/* COLORS */
+.pink   { background: #e91e63; }
+.teal   { background: #00695c; }
+.purple { background: #8e24aa; }
+.navy   { background: #1a237e; }
+.green  { background: #7cb342; }
+.blue   { background: #5c6bc0; }
+.wine   { background: #6a1b1a; }
+.red    { background: #d32f2f; }
+.orange { background: #f4511e; }
+.violet { background: #9575cd; }
+.sky    { background: #42a5f5; }
+.soft   { background: #ce93d8; }
