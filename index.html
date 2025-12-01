@@ -7,9 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <!-- Tombol menu untuk HP -->
+    <button class="mobile-menu-btn" onclick="openSidebar()">☰</button>
+
     <div class="container">
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
                 <h2>SUKA CODING</h2>
             </div>
@@ -22,9 +26,8 @@
             </ul>
         </nav>
 
-        <!-- Konten Utama -->
+        <!-- Main Content -->
         <main class="main-content">
-            <!-- Header -->
             <header class="header">
                 <div class="search-bar">
                     <input type="text" placeholder="Cari lagu, artis, album...">
@@ -35,7 +38,6 @@
                 </div>
             </header>
 
-            <!-- Area Konten -->
             <section class="content">
                 <h1>Selamat Siang</h1>
                 <div class="playlists">
@@ -55,36 +57,39 @@
                         <p>Dibuat khusus untuk Anda.</p>
                     </div>
                 </div>
-
-                <h2>Baru-baru Ini Dimainkan</h2>
-                <div class="song-list">
-                    <div class="song-item">
-                        <img src="https://via.placeholder.com/50" alt="Lagu">
-                        <div class="song-info">
-                            <h4>Judul Lagu 1</h4>
-                            <p>Nama Artis</p>
-                        </div>
-                        <span class="duration">3:45</span>
-                    </div>
-                    <div class="song-item">
-                        <img src="https://via.placeholder.com/50" alt="Lagu">
-                        <div class="song-info">
-                            <h4>Judul Lagu 2</h4>
-                            <p>Nama Artis</p>
-                        </div>
-                        <span class="duration">4:12</span>
-                    </div>
-                    <div class="song-item">
-                        <img src="https://via.placeholder.com/50" alt="Lagu">
-                        <div class="song-info">
-                            <h4>Judul Lagu 3</h4>
-                            <p>Nama Artis</p>
-                        </div>
-                        <span class="duration">2:58</span>
-                    </div>
-                </div>
             </section>
         </main>
     </div>
+
+    <script>
+        const sidebar = document.getElementById("sidebar");
+
+        /* === Auto-hide untuk PC === */
+        document.addEventListener("mousemove", (e) => {
+            if (window.innerWidth > 768) { 
+                if (e.clientX < 40) {
+                    sidebar.classList.add("show");
+                } 
+                else if (!sidebar.matches(":hover")) {
+                    sidebar.classList.remove("show");
+                }
+            }
+        });
+
+        /* === Fungsi HP (Drawer) === */
+        function openSidebar() {
+            sidebar.classList.add("show-mobile");
+        }
+
+        /* Tutup jika tap di luar sidebar */
+        document.addEventListener("click", function (e) {
+            if (window.innerWidth <= 768) {
+                if (!sidebar.contains(e.target) && !e.target.matches(".mobile-menu-btn")) {
+                    sidebar.classList.remove("show-mobile");
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>

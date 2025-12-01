@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f0f0f;
+    color: white;
+}
+
+.container {
+    margin-left: 220px;
+    padding: 30px;
+}
+
+.sidebar {
+    width: 220px;
+    height: 100vh;
+    background: #000;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+}
+
+.sidebar h2 {
+    margin-bottom: 30px;
+    color: #1db954;
+}
+
+.title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.playlist-box {
+    background: #181818;
+    padding: 25px;
+    border-radius: 10px;
+    width: 420px;
+}
+
+.playlist-box label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+input[type="text"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #303030;
+    color: white;
+    margin-bottom: 15px;
+}
+
+textarea {
+    width: 100%;
+    height: 90px;
+    padding: 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background: #303030;
+    color: white;
+    resize: none;
+    margin-bottom: 20px;
+}
+
+.btn-create {
+    background: #1db954;
+    color: black;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-create:hover {
+    background: #1ed760;
+}
