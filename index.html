@@ -1,95 +1,339 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUSIC PLAYER</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TR AST PTI</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0c0c0c;
+  color: white;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* ------------------ SIDEBAR ------------------ */
+.sidebar {
+  width: 70px;
+  background: #111;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px 15px;
+  transition: 0.3s;
+  overflow: hidden;
+  z-index: 999;
+}
+
+/* PC — auto expand */
+@media (min-width: 769px) {
+  .sidebar:hover {
+    width: 250px;
+  }
+  .sidebar:hover .text,
+  .sidebar:hover .brand-text {
+    opacity: 1;
+  }
+}
+
+/* MOBILE — sidebar hidden by default */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -250px;
+    width: 250px;
+  }
+  .sidebar.show {
+    left: 0;
+  }
+}
+
+/* ------------------ TEXT VISIBILITY ------------------ */
+@media (min-width: 769px) {
+  .sidebar .text,
+  .brand-text {
+    opacity: 0;
+    transition: 0.25s;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar .text,
+  .brand-text {
+    opacity: 1 !important;
+  }
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.2s;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-item:hover {
+  background: #1e1e1e;
+}
+
+/* ------------------ MAIN ------------------ */
+.main {
+  margin-left: 70px;
+  padding: 25px;
+  flex: 1;
+  transition: 0.3s;
+}
+
+.sidebar:hover ~ .main {
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0 !important;
+  }
+}
+
+/* ------------------ HAMBURGER ------------------ */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    font-size: 27px;
+    background: #1db954;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+}
+
+/* ------------------ COVER ------------------ */
+.cover {
+  height: 260px;
+  width: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-title {
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+}
+
+/* ------------------ SONGS ------------------ */
+.songs {
+  margin-top: 30px;
+}
+
+.song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.song:hover {
+  background: #1a1a1a;
+  transform: translateX(5px);
+}
+
+.song img {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.meta .title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.meta .artist {
+  font-size: 13px;
+  color: #bbbbbb;
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Tombol menu untuk HP -->
-    <button class="mobile-menu-btn" onclick="openSidebar()">☰</button>
+<!-- HAMBURGER MOBILE -->
+<div class="hamburger" onclick="toggleSidebar()">☰</div>
 
-    <div class="container">
-        <!-- Sidebar -->
-        <nav class="sidebar" id="sidebar">
-            <div class="logo">
-                <h2>SUKA CODING</h2>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#">Beranda</a></li>
-                <li><a href="#">Cari</a></li>
-                <li><a href="#">Koleksi Anda</a></li>
-                <li><a href="#">Buat Playlist</a></li>
-                <li><a href="#">Lagu yang Disukai</a></li>
-            </ul>
-        </nav>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="logo">♪</span>
+    <span class="brand-text">MyMusic</span>
+  </div>
 
-        <!-- Main Content -->
-        <main class="main-content">
-            <header class="header">
-                <div class="search-bar">
-                    <input type="text" placeholder="Cari lagu, artis, album...">
-                </div>
-                <div class="user-profile">
-                    <img src="https://via.placeholder.com/40" alt="Avatar Pengguna">
-                    <span>Nama Pengguna</span>
-                </div>
-            </header>
+  <nav>
+    <ul class="menu-list">
+      <a href="index.html" class="menu-item">
+        <span>🏠</span><span class="text">Home</span>
+      </a>
 
-            <section class="content">
-                <h1>Selamat Siang</h1>
-                <div class="playlists">
-                    <div class="playlist-card">
-                        <img src="https://via.placeholder.com/150" alt="Playlist">
-                        <h3>Penemuan Mingguan</h3>
-                        <p>Mixtape mingguan musik segar untuk Anda.</p>
-                    </div>
-                    <div class="playlist-card">
-                        <img src="https://via.placeholder.com/150" alt="Playlist">
-                        <h3>Radar Rilis</h3>
-                        <p>Tangkap semua musik terbaru dari artis yang Anda ikuti.</p>
-                    </div>
-                    <div class="playlist-card">
-                        <img src="https://via.placeholder.com/150" alt="Playlist">
-                        <h3>Mix Harian 1</h3>
-                        <p>Dibuat khusus untuk Anda.</p>
-                    </div>
-                </div>
-            </section>
-        </main>
+      <a href="daftarsuka.html" class="menu-item">
+        <span>🩷</span><span class="text">Playlist</span>
+      </a>
+
+      <a href="artis.html" class="menu-item">
+        <span>🎤</span><span class="text">Artist</span>
+      </a>
+
+      <!-- Tombol Koleksi dihapus -->
+    </ul>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <section class="cover">
+    <img class="cover-photo" src="220768beafc76ea30fbcee251da1f8ff5c39e48a.jpg">
+    <h1 class="cover-title">Terakhir Didengarkan</h1>
+  </section>
+
+  <section class="songs">
+
+    <div class="song">
+      <div class="left">
+        <img src="image/everything u are.jpeg" />
+        <div class="meta">
+          <div class="title">Everything U Are</div>
+          <div class="artist">Hindia</div>
+        </div>
+      </div>
+      <div class="right">3:57</div>
     </div>
 
-    <script>
-        const sidebar = document.getElementById("sidebar");
+    <div class="song">
+      <div class="left">
+        <img src="image/tarot.png" />
+        <div class="meta">
+          <div class="title">Tarot</div>
+          <div class="artist">Feast</div>
+        </div>
+      </div>
+      <div class="right">4:49</div>
+    </div>
+    <div class="song">
+      <div class="left">
+        <img src="image/rahasia hati.jpeg" />
+        <div class="meta">
+          <div class="title">Rahasia Hati</div>
+          <div class="artist">Nidji</div>
+        </div>
+      </div>
+      <div class="right">4:15</div>
+    </div>
 
-        /* === Auto-hide untuk PC === */
-        document.addEventListener("mousemove", (e) => {
-            if (window.innerWidth > 768) { 
-                if (e.clientX < 40) {
-                    sidebar.classList.add("show");
-                } 
-                else if (!sidebar.matches(":hover")) {
-                    sidebar.classList.remove("show");
-                }
-            }
-        });
+    <div class="song">
+      <div class="left">
+        <img src="image/aku yang jatuh cinta.jpeg" />
+        <div class="meta">
+          <div class="title">Aku Yang Jatuh Cinta</div>
+          <div class="artist">Dudy Oris</div>
+        </div>
+      </div>
+      <div class="right">3:18</div>
+    </div>
 
-        /* === Fungsi HP (Drawer) === */
-        function openSidebar() {
-            sidebar.classList.add("show-mobile");
-        }
+    <div class="song">
+      <div class="left">
+        <img src="image/seandainya.jpeg" />
+        <div class="meta">
+          <div class="title">Seandainya</div>
+          <div class="artist">Vierra</div>
+        </div>
+      </div>
+      <div class="right">4:25</div>
+    </div>
 
-        /* Tutup jika tap di luar sidebar */
-        document.addEventListener("click", function (e) {
-            if (window.innerWidth <= 768) {
-                if (!sidebar.contains(e.target) && !e.target.matches(".mobile-menu-btn")) {
-                    sidebar.classList.remove("show-mobile");
-                }
-            }
-        });
-    </script>
+    <div class="song">
+      <div class="left">
+        <img src="image/karena kamu.jpeg" />
+        <div class="meta">
+          <div class="title">Karena Kamu</div>
+          <div class="artist">Geisha</div>
+        </div>
+      </div>
+      <div class="right">3:56</div>
+
+    </div>
+    <div class="song">
+      <div class="left">
+        <img src="image/dan.jpeg" />
+        <div class="meta">
+          <div class="title">Dan...</div>
+          <div class="artist">Sheila On7</div>
+        </div>
+      </div>
+      <div class="right">3:56</div>
+    </div>
+
+    </div>
+    <div class="song">
+      <div class="left">
+        <img src="image/serana.jpeg" />
+        <div class="meta">
+          <div class="title">Serana</div>
+          <div class="artist">For Revenge</div>
+        </div>
+      </div>
+      <div class="right">4:11</div>
+    </div>
+
+
+  </section>
+
+</main>
+
+<script>
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("show");
+}
+</script>
 
 </body>
 </html>

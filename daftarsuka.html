@@ -1,146 +1,346 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lagu Yang Disukai</title>
-    <link rel="stylesheet" href="daftarssuka.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Liked Songs - MyMusic</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    background: linear-gradient(135deg, #2b2a4a, #161421);
+    color: white;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 70px;
+    background: #111;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    transition: width 0.3s ease;
+    z-index: 999;
+  }
+
+  .sidebar:hover {
+    width: 220px;
+  }
+
+  .brand {
+    font-size: 28px;
+    font-weight: bold;
+    color: #1db954;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 40px;
+  }
+  .logo { font-size: 32px; }
+  .brand-text { opacity: 0; transition: opacity 0.25s; }
+  .sidebar:hover .brand-text { opacity: 1; }
+
+  /* MENU */
+  nav { flex-grow: 1; }
+  .menu-list { list-style: none; padding: 0; margin: 0; }
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .menu-item:hover { background: #1e1e1e; }
+  .text { opacity: 0; transition: opacity 0.25s; }
+  .sidebar:hover .text { opacity: 1; }
+
+  /* MAIN CONTENT */
+  .main {
+    margin-left: 70px;
+    padding: 25px;
+    flex: 1;
+    width: 100%;
+    transition: margin-left 0.3s ease;
+  }
+  .sidebar:hover ~ .main { margin-left: 220px; }
+
+  /* HAMBURGER MOBILE */
+  .hamburger {
+    display: none;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    width: 30px;
+    height: 25px;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1100;
+  }
+  .hamburger span {
+    display: block;
+    height: 4px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+  }
+
+  /* MOBILE STYLES */
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .sidebar {
+      left: -250px;
+      width: 250px;
+      transition: left 0.3s ease;
+    }
+    .sidebar.show { left: 0; }
+    .main { margin-left: 0; padding: 80px 25px 25px 25px; }
+  }
+
+  /* TABLE SONGS */
+  table {
+    width: 90%;
+    margin: 0 auto 50px auto;
+    border-collapse: collapse;
+    color: white;
+    font-size: 0.9rem;
+  }
+  thead tr { border-bottom: 1px solid #555; font-weight: 700; text-align: left; }
+  thead th { padding: 12px 10px; }
+  tbody tr { border-bottom: 1px solid #333; cursor: pointer; transition: background-color 0.2s; }
+  tbody tr:hover { background-color: #2f2f3a; }
+  tbody td { padding: 12px 10px; vertical-align: middle; }
+  .song-title { display: flex; align-items: center; gap: 15px; }
+  .song-cover { width: 45px; height: 45px; border-radius: 6px; object-fit: cover; }
+  .song-name { font-weight: 700; }
+  .song-artist { font-size: 0.85rem; color: #aaa; }
+  .duration { text-align: right; opacity: 0.6; }
+
+</style>
 </head>
-
 <body>
-    <div class="page">
-        <h1>🎵 Daftar Lagu Yang Disukai</h1>
 
-        <ul class="song-list">
+<!-- HAMBURGER MOBILE -->
+<div class="hamburger" onclick="toggleSidebar()" aria-label="Toggle sidebar">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
 
-            <li class="song-item border-darkgreen">
-                <img src="image/everything u are.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Everything You Are</strong> 
-                    <span>Hindia</span>
-                </div>
-                <div class="song-meta">3.57</div>
-            </li>
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="logo">♪</span>
+    <span class="brand-text">MyMusic</span>
+  </div>
 
-            <li class="song-item border-green">
-                <img src="image/serana.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Serana</strong>
-                    <span>For Ravenge</span>
-                </div>
-                <div class="song-meta">4.11</div>
-            </li>
+  <nav>
+    <ul class="menu-list">
+      <a href="index.html" class="menu-item"><span>🏠</span><span class="text">Home</span></a>
+      <a href="daftarsuka.html" class="menu-item"><span>🩷</span><span class="text">Liked Songs</span></a>
+      <a href="artis.html" class="menu-item"><span>🎤</span><span class="text">Artist</span></a>
+    </ul>
+  </nav>
+</aside>
 
-            <li class="song-item border-lime">
-                <img src="image/tikus tikus kantor.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Tikus-Tikus Kantor</strong>
-                    <span>Iwan Fals</span>
-                </div>
-                <div class="song-meta">2.34</div>
-            </li>
+<!-- MAIN CONTENT -->
+<main class="main">
+  <h1>Liked Songs</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Artist</th>
+        <th style="text-align:right;">⏱</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td class="song-title">
+          <img src="image/everything u are.jpeg" alt="Everything You Are" class="song-cover" />
+          <div>
+            <div class="song-name">Everything You Are</div>
+            <div class="song-artist">Hindia</div>
+          </div>
+        </td>
+        <td>Hindia</td>
+        <td class="duration">3:57</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td class="song-title">
+          <img src="image/tarot.png" alt="Tarot" class="song-cover" />
+          <div>
+            <div class="song-name">Tarot</div>
+            <div class="song-artist">Feast</div>
+          </div>
+        </td>
+        <td>Feast</td>
+        <td class="duration">4:49</td>
+      </tr>
+      <td>3</td>
+        <td class="song-title">
+          <img src="image/serana.jpeg" alt="Serana" class="song-cover" />
+          <div>
+            <div class="song-name">Serana</div>
+            <div class="song-artist">For Ravenge</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:11</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td class="song-title">
+          <img src="image/tikus tikus kantor.jpeg" alt="Tikus-Tikus Kantor" class="song-cover" />
+          <div>
+            <div class="song-name">Tikus-Tikus Kantor</div>
+            <div class="song-artist">Iwan Fals</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">2:34</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td class="song-title">
+          <img src="image/di ujung jalan.jpeg" alt="Di Ujung Jalan" class="song-cover" />
+          <div>
+            <div class="song-name">Di Ujung Jalan</div>
+            <div class="song-artist">Samsons</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">3:54</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td class="song-title">
+          <img src="image/seandainya.jpeg" alt="Seandainya" class="song-cover" />
+          <div>
+            <div class="song-name">Seandainya</div>
+            <div class="song-artist">Virerra</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:24</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td class="song-title">
+          <img src="image/dan.jpeg" alt="Dan..." class="song-cover" />
+          <div>
+            <div class="song-name">Dan...</div>
+            <div class="song-artist">Sheila On 7</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:49</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td class="song-title">
+          <img src="image/pemuja rahasia.jpeg" alt="Pemuja Rahasia" class="song-cover" />
+          <div>
+            <div class="song-name">Pemuja Rahasia</div>
+            <div class="song-artist">Sheila On 7</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">3:53</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td class="song-title">
+          <img src="image/karena kamu.jpeg" alt="Karena Kamu" class="song-cover" />
+          <div>
+            <div class="song-name">Karena Kamu</div>
+            <div class="song-artist">Geisha</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">3:55</td>
+      </tr>
+      
+        <td>10</td>
+        <td class="song-title">
+          <img src="image/rahasia hati.jpeg" alt="Lesung Pipi" class="song-cover" />
+          <div>
+            <div class="song-name">Rahasia Hati</div>
+            <div class="song-artist">Nidji</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">3:45</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td class="song-title">
+          <img src="image/indahnya dirimu.jpg" alt="Dirimu Yang Dulu" class="song-cover" />
+          <div>
+            <div class="song-name">Indahnya Dirimu</div>
+            <div class="song-artist">HIVI!</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:00</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td class="song-title">
+          <img src="image/aku milikmu.jpeg" alt="Nina" class="song-cover" />
+          <div>
+            <div class="song-name">Aku MilikMu</div>
+            <div class="song-artist">Dewa19</div>
+          </div>
+        </td>
+        <td>Single</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:37</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td class="song-title">
+          <img src="image/kita kesana.jpg" alt="Ngapain Repot" class="song-cover" />
+          <div>
+            <div class="song-name">Kita Ke Sana</div>
+            <div class="song-artist">Hindia</div>
+          </div>
+        </td>
+        <td>Ngapain Repot</td>
+        <td class="date-added">4 weeks ago</td>
+        <td class="duration">4:14</td>
+      </tr>
+    </tbody>
+  </table>
+</main>
 
-            <li class="song-item border-softgreen">
-                <img src="image/di ujung jalan.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Di Ujung Jalan</strong>
-                    <span>Samsons</span>
-                </div>
-                <div class="song-meta">3.54</div>
-            </li>
+<script>
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("show");
+}
+</script>
 
-            <li class="song-item border-darkgreen">
-                <img src="image/seandainya.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Seandainya</strong>
-                    <span>Virerra</span>
-                </div>
-                <div class="song-meta">4.24</div>
-            </li>
-
-            <li class="song-item border-green">
-                <img src="image/dan.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Dan...</strong>
-                    <span>Sheila On 7</span>
-                </div>
-                <div class="song-meta">4.49</div>
-            </li>
-
-            <li class="song-item border-lime">
-                <img src="image/pemuja rahasia.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Pemuja Rahasia</strong>
-                    <span>Sheila On 7</span>
-                </div>
-                <div class="song-meta">3.53</div>
-            </li>
-
-            <li class="song-item border-softgreen">
-                <img src="image/karena kamu.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Karena Kamu</strong>
-                    <span>Geisha</span>
-                </div>
-                <div class="song-meta">3.55</div>
-            </li>
-
-            <li class="song-item border-darkgreen">
-                <img src="image/aku yang jatuh cinta.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Aku Yang Jatuh Cinta</strong>
-                    <span>Dudy Oris</span>
-                </div>
-                <div class="song-meta">3.17</div>
-            </li>
-
-            <li class="song-item border-green">
-                <img src="image/rahasia hati.jpeg" width="3%">
-                <div class="song-info">
-                    <strong>Rahasia Hati</strong>
-                    <span>NIDJI</span>
-                </div>
-                <div class="song-meta">4.11</div>
-            </li>
-
-            <li class="song-item border-lime">
-                <img src="image/tarot.png" width="3%">
-                <div class="song-info">
-                    <strong>Tarot</strong>
-                    <span>.Feast</span>
-                </div>
-                <div class="song-meta">4.49</div>
-            </li>
-
-            <li class="song-item border-softgreen">
-                <img src="image/indahnya dirimu.jpg" width="3%">
-                <div class="song-info">
-                    <strong>Indahnya Dirimu</strong>
-                    <span>Hivi!</span>
-                </div>
-                <div class="song-meta">4.56</div>
-            </li>
-
-            <li class="song-item border-darkgreen">
-                <img src="image/kita kesana.jpg" width="3%">
-                <div class="song-info">
-                    <strong>Kita Ke Sana</strong>
-                    <span>Hindia</span>
-                </div>
-                <div class="song-meta">4.43</div>
-            </li>
-
-            <li class="song-item border-green">
-                <img src="image/aku milikmu.jpeg" width="3%">
-                    <div class="song-info">
-                        <strong>Aku Milikmu</strong>
-                        <span>Dewa 19</span>
-                    </div>
-                    <div class="song-meta">5.33</div>
-                </a>
-            </li>
-
-        </ul>
-    </div>
 </body>
 </html>
