@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artis Populer UI + Sidebar</title>
+<title>Artis Populer UI + Sidebar (Pure CSS)</title>
 
 <style>
+ 
     body {
         margin: 0;
         background: #121212;
@@ -14,7 +15,12 @@
         display: flex;
     }
 
-    /* SIDEBAR */
+   
+    #menu-toggle {
+        display: none;
+    }
+
+    /* SIDEBAR DEFAULT (PC/Desktop) */
     .sidebar {
         width: 70px;
         background: #111;
@@ -28,30 +34,16 @@
         z-index: 999;
     }
 
-    /* PC expand otomatis */
     @media (min-width: 769px) {
         .sidebar:hover {
             width: 250px;
         }
+        
         .sidebar:hover .text,
         .sidebar:hover .brand-text {
             opacity: 1;
         }
-    }
 
-    /* MOBILE sidebar hidden */
-    @media (max-width: 768px) {
-        .sidebar {
-            left: -250px;
-            width: 250px;
-        }
-        .sidebar.show {
-            left: 0;
-        }
-    }
-
-    /* TEXT VISIBILITY */
-    @media (min-width: 769px) {
         .sidebar .text,
         .brand-text {
             opacity: 0;
@@ -60,12 +52,63 @@
         }
     }
 
+
+    .hamburger {
+        display: none; 
+    }
+
     @media (max-width: 768px) {
+        .hamburger {
+            display: block;
+            position: fixed;
+            left: 15px;
+            top: 15px;
+            font-size: 27px;
+            background: #1db954;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+
+        .sidebar {
+            left: -250px;
+            width: 250px;
+        }
+
+        #menu-toggle:checked ~ .sidebar {
+            left: 0;
+        }
+        
+    
         .sidebar .text,
         .brand-text {
             opacity: 1 !important;
         }
     }
+    
+
+    
+    .main {
+        margin-left: 70px;
+        padding: 25px;
+        flex: 1;
+        transition: 0.3s;
+    }
+
+
+    .sidebar:hover ~ .main {
+        margin-left: 250px;
+    }
+
+    
+    @media (max-width: 768px) {
+        .main {
+            margin-left: 0 !important;
+        }
+    }
+
 
     .menu-list {
         list-style: none;
@@ -88,45 +131,6 @@
         background: #1e1e1e;
     }
 
-    /* MAIN CONTENT (PERBAIKAN UTAMA) */
-    .main {
-        margin-left: 70px;
-        padding: 25px;
-        flex: 1;
-        transition: 0.3s;
-    }
-
-    .sidebar:hover ~ .main {
-        margin-left: 250px;
-    }
-
-    @media (max-width: 768px) {
-        .main {
-            margin-left: 0 !important;
-        }
-    }
-
-    /* HAMBURGER */
-    .hamburger {
-        display: none;
-    }
-
-    @media (max-width: 768px) {
-        .hamburger {
-            display: block;
-            position: fixed;
-            left: 15px;
-            top: 15px;
-            font-size: 27px;
-            background: #1db954;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 1100;
-        }
-    }
-
-    /* ARTIST GRID */
     .artist-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -164,10 +168,10 @@
 
 <body>
 
-<!-- HAMBURGER -->
-<div class="hamburger" onclick="toggleSidebar()">☰</div>
+<input type="checkbox" id="menu-toggle">
 
-<!-- SIDEBAR -->
+<label for="menu-toggle" class="hamburger">☰</label>
+
 <aside class="sidebar" id="sidebar">
     <div class="brand">
         <span class="logo">♪</span>
@@ -191,45 +195,45 @@
     </nav>
 </aside>
 
-<!-- MAIN (PERBAIKAN) -->
+
 <div class="main">
 
-<h1>  ARTIST </h1>
+<h1>ARTIST</h1>
 
 <div class="artist-grid">
 
     <div class="artist-card">
-        <img src="image/fourtwnty.jpg">
+        <img src="image/fourtwnty.jpg" alt="Fourtwnty">
         <div class="artist-name">Fourtwnty</div>
         <div class="artist-sub">Artis</div>
     </div>
 
     <div class="artist-card">
-        <img src="image/raim laode.jpg">
+        <img src="image/raim laode.jpg" alt="Raim Laode">
         <div class="artist-name">Raim Laode</div>
         <div class="artist-sub">Artis</div>
     </div>
 
     <div class="artist-card">
-        <img src="image/pamungkas.jpg">
+        <img src="image/pamungkas.jpg" alt="Pamungkas">
         <div class="artist-name">Pamungkas</div>
         <div class="artist-sub">Artis</div>
     </div>
 
     <div class="artist-card">
-        <img src="image/for revenge.jpg">
+        <img src="image/for revenge.jpg" alt="For Revenge">
         <div class="artist-name">For Revenge</div>
         <div class="artist-sub">Artis</div>
     </div>
 
     <div class="artist-card">
-        <img src="image/niki.jpg">
+        <img src="image/niki.jpg" alt="NIKI">
         <div class="artist-name">NIKI</div>
         <div class="artist-sub">Artis</div>
     </div>
 
     <div class="artist-card">
-        <img src="image/sheila on 7.jpg">
+        <img src="image/sheila on 7.jpg" alt="Sheila On 7">
         <div class="artist-name">Sheila On 7</div>
         <div class="artist-sub">Artis</div>
     </div>
@@ -237,11 +241,7 @@
 </div>
 </div>
 
-<script>
-function toggleSidebar() {
-    document.getElementById("sidebar").classList.toggle("show");
-}
-</script>
+
 
 </body>
 </html>
