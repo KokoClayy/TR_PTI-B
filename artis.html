@@ -87,7 +87,6 @@
             opacity: 1 !important;
         }
     }
-    
 
     
     .main {
@@ -97,6 +96,10 @@
         transition: 0.3s;
     }
 
+        h1 {
+        margin: 0;
+        padding-left: 60px;
+    }
 
     .sidebar:hover ~ .main {
         margin-left: 250px;
@@ -134,12 +137,12 @@
     .artist-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 28px;
+        gap: 50px;
         padding: 0 24px 40px;
     }
 
     .artist-card img {
-        width: 100%;
+        width: 120%;
         aspect-ratio: 1/1;
         object-fit: cover;
         border-radius: 50%;
