@@ -337,3 +337,342 @@ function toggleSidebar() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TR AST PTI</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0c0c0c;
+  color: white;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* HIDE CHECKBOX */
+#menu-toggle {
+  display: none;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+    position: fixed;
+    left: 15px;
+    top: 15px;
+    font-size: 27px;
+    background: #1db954;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1100;
+  }
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 70px;
+  background: #111;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 20px 15px;
+  transition: 0.3s;
+  overflow: hidden;
+  z-index: 999;
+}
+
+/* PC — auto expand */
+@media (min-width: 769px) {
+  .sidebar:hover {
+    width: 250px;
+  }
+  .sidebar:hover .text,
+  .sidebar:hover .brand-text {
+    opacity: 1;
+  }
+}
+
+/* MOBILE — sidebar hidden by default */
+@media (max-width: 768px) {
+  .sidebar {
+    left: -250px;
+    width: 250px;
+  }
+
+  /* CHECKBOX CHECKED = SIDEBAR SHOW */
+  #menu-toggle:checked ~ .sidebar {
+    left: 0;
+  }
+}
+
+/* TEXT VISIBILITY */
+@media (min-width: 769px) {
+  .sidebar .text,
+  .brand-text {
+    opacity: 0;
+    transition: 0.25s;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar .text,
+  .brand-text {
+    opacity: 1 !important;
+  }
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: 0.2s;
+  text-decoration: none;
+  color: white;
+}
+
+.menu-item:hover {
+  background: #1e1e1e;
+}
+
+/* MAIN */
+.main {
+  margin-left: 70px;
+  padding: 25px;
+  flex: 1;
+  transition: 0.3s;
+}
+
+.sidebar:hover ~ .main {
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 0 !important;
+  }
+}
+
+/* COVER */
+.cover {
+  height: 260px;
+  width: 100%;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.cover-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cover-title {
+  font-size: 32px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+}
+
+/* SONGS */
+.songs {
+  margin-top: 30px;
+}
+
+.song {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 5px;
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.song:hover {
+  background: #1a1a1a;
+  transform: translateX(5px);
+}
+
+.song img {
+  width: 55px;
+  height: 55px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.meta .title {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.meta .artist {
+  font-size: 13px;
+  color: #bbbbbb;
+}
+</style>
+</head>
+
+<body>
+
+<!-- CHECKBOX INPUT -->
+<input type="checkbox" id="menu-toggle" />
+
+<!-- HAMBURGER LABEL (KLIK = TOGGLE CHECKBOX) -->
+<label for="menu-toggle" class="hamburger">☰</label>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="brand">
+    <span class="logo">♪</span>
+    <span class="brand-text">MyMusic</span>
+  </div>
+
+  <nav>
+    <ul class="menu-list">
+      <a href="index.html" class="menu-item">
+        <span>🏠</span><span class="text">Home</span>
+      </a>
+
+      <a href="daftarsuka.html" class="menu-item">
+        <span>🩷</span><span class="text">Playlist</span>
+      </a>
+
+      <a href="artis.html" class="menu-item">
+        <span>🎤</span><span class="text">Artist</span>
+      </a>
+    </ul>
+  </nav>
+</aside>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+  <section class="cover">
+    <img class="cover-photo" src="220768beafc76ea30fbcee251da1f8ff5c39e48a.jpg">
+    <h1 class="cover-title">Terakhir Didengarkan</h1>
+  </section>
+
+  <section class="songs">
+    <div class="song">
+      <div class="left">
+        <img src="image/everything u are.jpeg" />
+        <div class="meta">
+          <div class="title">Everything U Are</div>
+          <div class="artist">Hindia</div>
+        </div>
+      </div>
+      <div class="right">3:57</div>
+    </div>
+
+    <div class="song">
+      <div class="left">
+        <img src="image/tarot.png" />
+        <div class="meta">
+          <div class="title">Tarot</div>
+          <div class="artist">Feast</div>
+        </div>
+      </div>
+      <div class="right">4:49</div>
+    </div>
+
+     <div class="song">
+      <div class="left">
+        <img src="image/rahasia hati.jpeg" />
+        <div class="meta">
+          <div class="title">Rahasia Hati</div>
+          <div class="artist">Nidji</div>
+        </div>
+      </div>
+      <div class="right">4:15</div>
+    </div>
+
+    <div class="song">
+      <div class="left">
+        <img src="image/aku yang jatuh cinta.jpeg" />
+        <div class="meta">
+          <div class="title">Aku Yang Jatuh Cinta</div>
+          <div class="artist">Dudy Oris</div>
+        </div>
+      </div>
+      <div class="right">3:18</div>
+    </div>
+
+    <div class="song">
+      <div class="left">
+        <img src="image/seandainya.jpeg" />
+        <div class="meta">
+          <div class="title">Seandainya</div>
+          <div class="artist">Vierra</div>
+        </div>
+      </div>
+      <div class="right">4:25</div>
+    </div>
+
+    <div class="song">
+      <div class="left">
+        <img src="image/karena kamu.jpeg" />
+        <div class="meta">
+          <div class="title">Karena Kamu</div>
+          <div class="artist">Geisha</div>
+        </div>
+      </div>
+      <div class="right">3:56</div>
+
+    </div>
+    <div class="song">
+      <div class="left">
+        <img src="image/dan.jpeg" />
+        <div class="meta">
+          <div class="title">Dan...</div>
+          <div class="artist">Sheila On7</div>
+        </div>
+      </div>
+      <div class="right">3:56</div>
+    </div>
+
+    </div>
+    <div class="song">
+      <div class="left">
+        <img src="image/serana.jpeg" />
+        <div class="meta">
+          <div class="title">Serana</div>
+          <div class="artist">For Revenge</div>
+        </div>
+      </div>
+      <div class="right">4:11</div>
+    </div>
+    
+    <!-- ...existing songs... -->
+  </section>
+</main>
+
+</body>
+</html>
